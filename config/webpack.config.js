@@ -127,7 +127,9 @@ module.exports = function(webpackEnv) {
 				},
 			}
 			if (preProcessor === 'less-loader') {
+				// 导入修改的js对象
 					loader.options.modifyVars = {...antdTheme()};
+					// js修改less
 					loader.options.javascriptEnabled = true;
 			}
       loaders.push(
@@ -408,6 +410,7 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+									// antd按需加载
 									[
 										"import",
 										{
@@ -415,12 +418,14 @@ module.exports = function(webpackEnv) {
 											"style": true
 										}
 									],
+									// 高阶组件在jsx中简写如：@observe
 									[
 										"@babel/plugin-proposal-decorators",
 										{
 											"legacy":true
 										}
 									],
+									// 高阶组件在jsx中简写如：@observe
 									[
 										"@babel/plugin-proposal-class-properties",
 										{
