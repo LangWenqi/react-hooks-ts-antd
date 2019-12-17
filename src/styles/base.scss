@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: PingFangSC-Regular, MicrosoftYaHei;
+    font-size: 16px;
+		-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+    //-moz-user-select: none;
+    //-o-user-select: none;
+    //-khtml-user-select: none;
+    //-webkit-user-select: none;
+    //-ms-user-select: none;
+    //user-select: none;
+}
+
+html {}
+body {
+	font-size: 16px;
+	width: 100%;
+	min-height: 100vh;
+}
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input,
+textarea {
+    border: none;
+    outline: none;
+    resize: none !important;
+    border: 0;
+    -webkit-appearance:text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+		background: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+input:disabled,textarea:disabled{
+    background-color:transparent;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+video {
+	outline: none;
+}
+::-webkit-scrollbar
+{
+    width: 5px;
+    //height: 16px;
+    background-color: transparent;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.cursor {
+	cursor: pointer;
+}
