@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement }  from 'react';
 import {Provider} from 'react-redux';
 import store from '@/store'; 
-import Router from './router';
+import Router from '@/router';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import history from '@/history';

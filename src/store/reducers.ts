@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux'
-import data from './reducers/data'
+import { combineReducers } from 'redux';
+import data from '@/store/reducers/data';
+import router from '@/store/reducers/router';
 
 const rootReducer = combineReducers({
-    data
+    data,
+		router
 });
 export default rootReducer

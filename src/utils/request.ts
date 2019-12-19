@@ -22,11 +22,11 @@ axios.interceptors.response.use(function (response) {
 });
 
 interface Iparams  {
-	[propName: string]: any;
+	[key: string]: any;
 }
 
 interface Iconfig  {
-	[propName: string]: any;
+	[key: string]: any;
 }
 function Http({
 	url = '',

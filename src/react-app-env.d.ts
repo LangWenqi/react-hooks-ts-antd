@@ -64,10 +64,32 @@ declare module '*.module.sass' {
 }
 // 解决window设置属性报错
 interface Window {
-	[propName: string]: any;
+	[key: string]: any;
 
 }
+// 可不写因为接口会合并
+// declare var window:	Window;
 // 解决document设置属性报错
 interface Document {
-	[propName: string]: any;
+	[key: string]: any;
 }
+// 可不写因为接口会合并
+// declare var document:	Document;
+
+// 通过命名空间合并解决html添加属性编译报错，vscode中还是会提示错误
+declare namespace React {
+	interface HTMLAttributes<T> {
+		flex?: any;
+		['flex-box']?: any;
+		['flex-wrap']?: any;
+	}
+}
+
+// 在tsx文件中做如下处理可解决（vscode中不会提示错误，但繁琐，需要每个页面添加），必须在页面不是其他外部文件，否则引入的react模块变为此模块报错
+/*declare module 'react' {
+     interface HTMLProps<T> {
+        flex?: any;
+				['flex-box']?: any;
+				['flex-wrap']?: any;
+    }
+}*/

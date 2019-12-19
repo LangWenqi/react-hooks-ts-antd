@@ -2,7 +2,6 @@ interface IformLayout {
 	labelCol: { span: number };
 	wrapperCol: { span: number };
 }
-
 interface IformItemLayout {
 	labelCol: { 
 		xs: { span: number };

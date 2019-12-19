@@ -1,5 +1,5 @@
-import { INCREMENT, DECREMENT } from '../constants/data';
-import { I_INIT_STATE, MODIFY_ACTION } from '../interface/data';
+import { INCREMENT, DECREMENT } from '@/store/constants/data';
+import { I_INIT_STATE, MODIFY_ACTION } from '@/store/interface/data';
 
 const INIT_STATE: I_INIT_STATE = {
 	counter: 0

@@ -1,11 +1,12 @@
 import React, { FunctionComponent, ReactElement, useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import Connect, { IReduxProps } from './redux';
+import Connect, { IReduxProps } from '@/views/index/redux';
+import HeaderBar from '@/components/layouts/HearderBar';
 interface Iprops extends IReduxProps {
-	[propName: string]: any;
+	[key: string]: any;
 }
 const Index: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
 	const [ num, setNum ] = useState<number>(0);
-	const ref = useRef({ refNum: num });
+	// const ref = useRef({ refNum: num });
 
 	useEffect(()=>{
 		doSetNum();
@@ -17,8 +18,8 @@ const Index: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
 	}, []);
 
 	useEffect(()=>{
-		const { refNum }: { refNum: number } = ref.current;
-		console.log('refNum', refNum);
+		// const { refNum }: { refNum: number } = ref.current;
+		// console.log('refNum', refNum);
 	}, []);
 
 	const memoNum =  useMemo(():string => ('[' + num + ']'), [num]);
@@ -29,6 +30,7 @@ const Index: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
 	
   return (
 		<div onClick={() => props.onDecrement()}>
+			<HeaderBar/>
 			propCouter[{props.counter}]
 			stateNum{memoNum}
 			{ props.children }

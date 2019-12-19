@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from '../constants/data';
+import { INCREMENT, DECREMENT } from '@/store/constants/data';
 
 export interface I_INIT_STATE {
 	counter: number

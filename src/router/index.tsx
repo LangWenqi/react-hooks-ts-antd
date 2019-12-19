@@ -1,14 +1,14 @@
 import React, { ReactElement, Fragment, FunctionComponent } from 'react';
 import {Router, Route, Switch, Redirect } from 'react-router-dom';
 import history from '@/history';
-import { routerMap } from './routes';
+import { routerMap } from '@/router/routes';
 import { IrouterMapInterface } from '@/config/typings';
 // RouteComponentProps
 
 const RouteWithSubRoutes = (route: any): ReactElement => (
 	<Fragment>
 		<Route exact={route.exact}
-			path={route.path}
+			path={route.pathname}
 				render={props => (
 					<route.component {...props} route={{ ...route }} routes={ route.routes }>
 						<Fragment>

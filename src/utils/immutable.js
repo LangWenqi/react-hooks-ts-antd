@@ -1,4 +1,4 @@
-import {getType, clone} from './object.js';
+import {getType, clone} from '@/utils/object.js';
 
 /**
  * @author: langwenqi

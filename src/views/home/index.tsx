@@ -1,12 +1,13 @@
 import React, { FunctionComponent, ReactElement } from 'react';
-import Connect, { IReduxProps } from './redux';
+import Connect, { IReduxProps } from '@/views/home/redux';
 interface Iprops extends IReduxProps {
-	[propName: string]: any;
+	[key: string]: any;
 }
-const Home: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
+
+const Home: FunctionComponent<Iprops> = (props: Iprops): any => {
   return (
 		<div>
-			sadfdsaf
+
 		</div>
 	);
 }
