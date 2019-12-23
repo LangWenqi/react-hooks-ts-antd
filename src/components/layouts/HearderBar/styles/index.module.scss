@@ -1,4 +1,18 @@
 
+.header__ant {
+	background: $color-header;
+	padding: 0 $margin-24 0 $margin-24*2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
 .header__dropdown {
-	
+	padding: 0 $margin-24;
+	margin: 0 $margin-24;
+}
+.header__user-name {
+	margin: 0 $margin-12;
+	font-size: $font-16;
 }

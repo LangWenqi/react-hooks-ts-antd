@@ -34,6 +34,11 @@ export const formItemLayout: IformItemLayout = {
   }
 };
 
+export const siderWidth: number = 200;
 
+export const theme: { light: 'light'; dark: 'dark' } = {
+	light: 'light',
+	dark: 'dark'
+}
 
   

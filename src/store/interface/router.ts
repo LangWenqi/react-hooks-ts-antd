@@ -9,7 +9,7 @@ export interface I_INIT_STATE {
 	params: {
 		[key: string]: string | number;
 	};
-	routeConfig: IrouterMapInterface | { pathname: string};
+	routeConfig: IrouterMapInterface | { pathname: string; module?: string; select?: string};
 	state?: {
 		[key: string]: string | number;
 	}

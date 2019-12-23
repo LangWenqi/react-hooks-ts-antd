@@ -13,12 +13,23 @@ export interface IclassComponent  {
 export interface IrouterMapInterface {
 	pathname: string;
 	module?: string;
+	select?: string;
 	component: FunctionComponent;
 	redirect?: string;
 	to?: any;
 	exact?: boolean;
 	beforeRouteEnter?: ({ next, from ,to }: IrouterBeforeEach) => void;
 	routes?: Array<IrouterMapInterface>;
+}
+export interface ImenuInterface {
+	name: string;
+	module: string;
+	routes: Array<{
+		name: string;
+		module: string;
+		select: string;
+		path: string;
+	}>
 }
 // history跳转query参数
 export interface IhistoryQuery {

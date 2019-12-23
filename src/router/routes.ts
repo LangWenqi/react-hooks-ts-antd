@@ -5,7 +5,6 @@ import { Icomponent } from '@/config/typings';
 export const routerMap: IrouterMapInterface[] = [
 		{
 			pathname: '/',
-			module: 'index',
 			component: lazy(():Promise<Icomponent> => import('@/views/index')),
 			redirect: '/',
 			to: '/home',
@@ -13,7 +12,8 @@ export const routerMap: IrouterMapInterface[] = [
 				{
 					pathname: '/home',
 					exact: true,
-					module: 'home',
+					module: 'module1',
+					select: 'home',
 					component: lazy(():Promise<Icomponent> => import('@/views/home'))
 				}
 			]

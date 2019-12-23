@@ -1,0 +1,13 @@
+
+.sider__ant {
+	height: calc(100vh - #{$padding-header});
+	overflow: auto;
+	&::-webkit-scrollbar{
+			width: 0;
+			height: 1px;
+			background-color: transparent;
+	}
+}
+.sider__ant__inner {
+	min-height: calc(100vh - #{$padding-header});
+}

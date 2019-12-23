@@ -5,7 +5,7 @@ import { Layout, Avatar, Menu, Icon, Dropdown, Button } from 'antd';
 // scss cssModules使用方法
 import IndexStyle from './styles/index.module.scss';
 import classNames from 'classnames/bind';
-const CassNames = classNames.bind(IndexStyle);
+const ClassNames = classNames.bind(IndexStyle);
 // scss 普通使用方法
 // import IndexStyle from './styles/index.scss';
 // import ClassNames from 'classnames';
@@ -49,14 +49,18 @@ const HeaderBar: FunctionComponent<Iprops> = ({ userInfo = {} }: Iprops): ReactE
 		</Menu>
 	);
 	return (
-		<Header style={{ background: '#fff', padding: 0 }}>
-				<Dropdown overlay={menu}>
-					<div className="header__dropdown">
-						<Avatar src={userInfo.user? userInfo.user.picture: ''} />
-						<span className="hearder-name">{ userInfo.user?  userInfo.user.name : '--' } </span> 
-						<Icon type="down" />
-					</div>
-				</Dropdown>
+		<Header className={ ClassNames('header__ant') }>
+				<div className="flex flex-cross-center flex-main-justify">
+					<div>react</div>
+					<Dropdown overlay={menu}>
+						<div className={ ClassNames('header__dropdown') }>
+							<Avatar src={userInfo.user? userInfo.user.picture: ''} />
+							<span className={ClassNames('header__user-name')}>{ userInfo.user?  userInfo.user.name : '--' } </span> 
+							<Icon type="down" />
+						</div>
+					</Dropdown>
+				</div>
+				
 		</Header>
 	)
 }

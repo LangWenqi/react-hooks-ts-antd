@@ -1,39 +1,28 @@
 import React, { FunctionComponent, ReactElement, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Connect, { IReduxProps } from '@/views/index/redux';
+import { Layout } from 'antd';
 import HeaderBar from '@/components/layouts/HearderBar';
+import LeftMenuSider from '@/components/layouts/LeftMenuSider';
+import IndexStyle from './styles/index.module.scss';
+import classNames from 'classnames/bind';
+const ClassNames = classNames.bind(IndexStyle);
+const { Content } = Layout;
 interface Iprops extends IReduxProps {
 	[key: string]: any;
 }
 const Index: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
-	const [ num, setNum ] = useState<number>(0);
-	// const ref = useRef({ refNum: num });
-
-	useEffect(()=>{
-		doSetNum();
-		console.log(num);
-		window.testFuc = () => {};
-		return () => {
-			window.testFuc = null;
-		}
-	}, []);
-
-	useEffect(()=>{
-		// const { refNum }: { refNum: number } = ref.current;
-		// console.log('refNum', refNum);
-	}, []);
-
-	const memoNum =  useMemo(():string => ('[' + num + ']'), [num]);
-
-	const doSetNum = useCallback(():void => {
-		setNum(num + 1);
-	}, [num]);
 	
   return (
-		<div onClick={() => props.onDecrement()}>
+		<div>
 			<HeaderBar/>
-			propCouter[{props.counter}]
-			stateNum{memoNum}
-			{ props.children }
+			<Layout className={ClassNames('index__Layout__out')}>
+				<Content>
+					<Layout>
+						<LeftMenuSider/>
+						{ props.children }
+					</Layout>
+				</Content>
+			</Layout>
 		</div>
 	);
 }

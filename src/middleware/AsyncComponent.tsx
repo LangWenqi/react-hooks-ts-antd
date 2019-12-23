@@ -80,8 +80,8 @@ export default function asyncComponent(importComponent: () => Promise<Icomponent
 				pathname: history.location.pathname,
 				query: history.getQuery(),
 				params: match.params,
-       routeConfig: route,
-       state: history.location.state
+				routeConfig: route,
+				state: history.location.state
 			});
 		} 
 
