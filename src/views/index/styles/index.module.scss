@@ -1,4 +1,7 @@
-.index__Layout__out {
+.index__Layout__outer {
+	min-height: 100vh;
+}
+.index__Layout__inner {
 	padding: $padding-header 0 0;
 	min-height: 100vh;
 }

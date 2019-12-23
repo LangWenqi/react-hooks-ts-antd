@@ -13,17 +13,15 @@ interface Iprops extends IReduxProps {
 const Index: FunctionComponent<Iprops> = (props: Iprops): ReactElement => {
 	
   return (
-		<div>
+		<Layout className={ClassNames('index__Layout__outer')}>
 			<HeaderBar/>
-			<Layout className={ClassNames('index__Layout__out')}>
+			<Layout className={ClassNames('index__Layout__inner')}>
+				<LeftMenuSider/>
 				<Content>
-					<Layout>
-						<LeftMenuSider/>
-						{ props.children }
-					</Layout>
+					{ props.children }
 				</Content>
 			</Layout>
-		</div>
+		</Layout>
 	);
 }
 
