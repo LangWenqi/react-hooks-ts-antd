@@ -7,7 +7,7 @@ import IndexStyle from './styles/index.module.scss';
 import classNames from 'classnames/bind';
 const ClassNames = classNames.bind(IndexStyle);
 // scss 普通使用方法
-// import IndexStyle from './styles/index.scss';
+// import './styles/index.scss';
 // import ClassNames from 'classnames';
 // 放到className中
 // ClassNames('container', { 'wrapper': true })
