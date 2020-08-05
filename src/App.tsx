@@ -18,7 +18,7 @@ history.routerBeforeEach = ({ next, from, to }: IrouterBeforeEach):void => {
 	next();
 };
 history.routerAfterEach = ({ from ,to }: IrouterAfterEach): void => {
-	console.log(from.pathname, to.pathname);
+	console.log('routerAfterEach', from.pathname, to.pathname);
 };
 
 const App: FunctionComponent = (): ReactElement => {

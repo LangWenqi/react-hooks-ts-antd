@@ -52,25 +52,25 @@ export default function asyncComponent(importComponent: () => Promise<Icomponent
 		// 每个页面中路由进入之前钩子
 		const handleRouteBeforeEach = (): Promise<any> => {
 			const {$route, route} = props;
-			const { routeBeforeEach } = history;
+			const { routerBeforeEach } = history;
 			return new Promise(next => {
-				if ( !routeBeforeEach ) {
+				if ( !routerBeforeEach ) {
 					next($route);
 					return;
 				}
 				const from = $route.routeConfig;
 				const to = route;
-				routeBeforeEach({ next, from, to });
+				routerBeforeEach({ next, from, to });
 			});
 		}
 		// 每个页面中路由进入之后钩子
 		const handleRouteAfterEach = (): void => {
 			const {$route, route} = props;
-			const { routeAfterEach } = history;
-			if ( !routeAfterEach ) return;
+			const { routerAfterEach } = history;
+			if ( !routerAfterEach ) return;
 			const from = $route.routeConfig;
 			const to = route;
-			routeAfterEach({ from, to });
+			routerAfterEach({ from, to });
 		}
 
 		const setCurrentRoute = (): void => {
@@ -134,25 +134,25 @@ export default function asyncComponent(importComponent: () => Promise<Icomponent
 // 		// 每个页面中路由进入之前钩子
 // 		handleRouteBeforeEach (): Promise<any> {
 // 			const {$route, route} = this.props;
-// 			const { routeBeforeEach } = history;
+// 			const { routerBeforeEach } = history;
 // 			return new Promise(next => {
-// 				if ( !routeBeforeEach ) {
+// 				if ( !routerBeforeEach ) {
 // 					next($route);
 // 					return;
 // 				}
 // 				const from = $route.routeConfig;
 // 				const to = route;
-// 				routeBeforeEach({ next, from, to });
+// 				routerBeforeEach({ next, from, to });
 // 			});
 // 		}
 // 		// 每个页面中路由进入之后钩子
 // 		handleRouteAfterEach (): void  {
 // 			const {$route, route} = this.props;
-// 			const { routeAfterEach } = history;
-// 			if ( !routeAfterEach ) return;
+// 			const { routerAfterEach } = history;
+// 			if ( !routerAfterEach ) return;
 // 			const from = $route.routeConfig;
 // 			const to = route;
-// 			routeAfterEach({ from, to });
+// 			routerAfterEach({ from, to });
 // 		}
 
 // 		setCurrentRoute (): void {
