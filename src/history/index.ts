@@ -5,13 +5,13 @@ const reactRouter = history;
 type reactRouter = typeof history;
 
 reactRouter.navigateTo = function (obj: historyParams) {
-    const searchQuery = `${qs.stringify(obj.query, true)}`;
+    const searchQuery = `${qs.stringify(obj.query || {}, true)}`;
     const search = searchQuery ? `?${searchQuery}` : '';
     const newObj = {...obj,search:search};
     reactRouter.push(newObj);
 };
 reactRouter.redirectTo = function (obj: historyParams) {
-    const searchQuery = `${qs.stringify(obj.query,true)}`;
+    const searchQuery = `${qs.stringify(obj.query || {}, true)}`;
     const search = searchQuery ? `?searchQuery` : '';
     const newObj = {...obj,search:search};
     reactRouter.replace(newObj);

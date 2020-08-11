@@ -2,8 +2,9 @@
  * @author: langwenqi
  * @describe: get type of data
  * @params:{all} data
- **/
-export function getType(data) {
+ */
+
+export function getType(data: any) {
     return Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
 }
 /**
@@ -11,9 +12,10 @@ export function getType(data) {
  * @describe: shallow clone
  * @params:{Object or Array} data
  * @return: {all} the result
- **/
-export function clone(data) {
-    let type = getType(data);
+ */
+
+export function clone(data: any) {
+    const type = getType(data);
     if (type === 'array') {
         return [].slice.call(data);
     }
@@ -27,16 +29,18 @@ export function clone(data) {
  * @describe: deep clone
  * @params:{Object or Array} data
  * @return: {all} the result
- **/
-export function deepClone(data = {}) {
-    let type = getType(data);
+ */
+
+export function deepClone(data: any) {
+    const type = getType(data);
     if (type === 'array') {
-        return data.map(el=>deepClone(el));
+        return data.map((el: any) => deepClone(el));
     } else if (type === 'object') {
-        let obj={};
-        Object.keys(data).forEach(key=>{
+        const obj: { [key: string]: any } = {};
+        Object.keys(data).forEach((key: string) => {
             obj[key] = deepClone(data[key]);
         });
+        return obj;
     }
     return data;
 };
@@ -46,19 +50,19 @@ export function deepClone(data = {}) {
  * @params:{Object or Array} obj1
  * @params:{Object or Array} obj2
  * @return:{Object or Array} the result
- **/
-export function deepExtend(obj1 = {},obj2 = {}){
-    if(getType(obj1) === 'object' && getType(obj2) === 'object'){
-        Object.keys(obj2).forEach(key=>{
-            if(!obj1[key]){
+ */
+export function deepExtend(obj1: any = {}, obj2: any = {}) {
+    if (getType(obj1) === 'object' && getType(obj2) === 'object') {
+        Object.keys(obj2).forEach((key: string) => {
+            if (!obj1[key]) {
                 obj1[key] = obj2[key];
-            }else{
-                obj1[key] = deepExtend(obj1[key],obj2[key]);
+            } else {
+                obj1[key] = deepExtend(obj1[key], obj2[key]);
             }
         });
-    }else if(getType(obj1) === 'array' && getType(obj2) === 'array'){
-        obj1=obj1.concat(obj2);
-    }else{
+    } else if (getType(obj1) === 'array' && getType(obj2) === 'array') {
+        obj1 = obj1.concat(obj2);
+    } else {
         obj1 = obj2;
     }
     return obj1;
@@ -68,9 +72,10 @@ export function deepExtend(obj1 = {},obj2 = {}){
  * @describe: to judge if an object or an array is empty or not
  * @param {Object or Array} target
  * @return {Boolean} the result
- **/
-export function isEmpty(data) {
-    let type = getType(data);
+ */
+
+export function isEmpty(data: any) {
+    const type = getType(data);
     if (type === 'object') {
         return !Object.keys(data).length;
     }
@@ -84,9 +89,10 @@ export function isEmpty(data) {
  * @describe: to judge if an object or an array or not
  * @param {all} data
  * @return {Boolean} the result
- **/
-export function isObjectArray (data) {
-    return getType(data) === 'object'|| getType(data) === 'array';
+ */
+
+export function isObjectArray(data: unknown) {
+    return getType(data) === 'object' || getType(data) === 'array';
 }
 /**
  * @author: langwenqi
@@ -94,25 +100,26 @@ export function isObjectArray (data) {
  * @param {all} a
  * @param {all} a
  * @return {Boolean} the result
- **/
-export function isEqual(a, b) {
-    if(getType(a) !== getType(b)){
+ */
+
+export function isEqual(a: any, b: any) {
+    if (getType(a) !== getType(b)) {
         return false;
     }
-    if((!isObjectArray(a)) && (!isObjectArray(b))){
+    if ((!isObjectArray(a)) && (!isObjectArray(b))) {
         return a === b;
     }
-    let aProps = Object.keys(a);
-    let bProps = Object.keys(b);
+    const aProps = Object.keys(a);
+    const bProps = Object.keys(b);
     if (aProps.length !== bProps.length) {
         return false;
     }
-    for (let key of aProps){
-        if(isObjectArray(a[key]) && isObjectArray(b[key])){
-            if(!isEqual(a[key],b[key])){
+    for (const key of aProps) {
+        if (isObjectArray(a[key]) && isObjectArray(b[key])) {
+            if (!isEqual(a[key], b[key])) {
                 return false;
             }
-        }else if(a[key] !== b[key]){
+        } else if (a[key] !== b[key]) {
             return false;
         }
     }
@@ -123,15 +130,23 @@ export function isEqual(a, b) {
  * @describe: stringify Object or parse Url
  * @params:{Object} stringify:obj,{String} parse:str
  * @return: {String} stringify:the result,{Object} parse:the result
- **/
-export const qs = {
-    stringify: function (obj = {}, ifEncode = true) {
+ */
+interface QsInterface {
+  stringify: (obj: { [key: string]: any }, ifEncode?: boolean) => string;
+  parse: (str: string, ifDecode?: boolean) => { [key: string]: any };
+}
+interface ParamInterface  {
+    [key: string]: any;
+}
+
+export const qs: QsInterface = {
+    stringify(obj = {}, ifEncode = true) {
         return Object.keys(obj).map((el, index) => {
             return `${el}=${ifEncode ? encodeURIComponent(obj[el]) : obj[el]}`;
         }).join('&');
     },
-    parse: function (str = '', ifDecode = true) {
-        let param = {};
+    parse(str = '', ifDecode = true) {
+        const param: ParamInterface = {};
         const arr = str ? str.split('&') : [];
         arr.forEach((el, index) => {
             param[el.split('=')[0]] = ifDecode ? decodeURIComponent(el.split('=')[1]) : el.split('=')[1];
@@ -139,16 +154,4 @@ export const qs = {
         return param;
     }
 };
-// Object.defineProperty(Object, 'is', {
-//     value: function(x, y) {
-//         if (x === y) {
-//             //  针对 +0  不等于 -0 的情况
-//             return x !== 0 || 1 / x === 1 / y;
-//         }
-//         //  针对 NaN 的情况
-//         return x !== x && y !== y;
-//     },
-//     configurable: true,
-//     enumerable: false,
-//     writable: true
-// });
+

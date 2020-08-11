@@ -15,24 +15,27 @@ import {getType, clone} from '@/utils/object.js';
  *     if the autoCreated is true and it come to an inexistent path,
  *     it will create new object by pathes, to avoid the error
  */
-export const set = function(target, paths=[], value, options = {}) {
-  if (options === true) {
+export const set = (target: any, paths: Array<string | number> | string, value: any, options: { [key: string]: any } = {}) => {
+  if (options) {
     options = { assign: true };
   }
-  let {assign} = options;
-    paths = Array.isArray(paths) ? paths : ('' + paths).split('.');
-  let targetType = getType(target),
-      valueType = getType(value),
-      length = paths.length;
+  const { assign } = options;
+  paths = Array.isArray(paths) ? paths : ('' + paths).split('.');
+  const targetType = getType(target)
+  const valueType = getType(value);
+  const length = paths.length;
   if (!length) {
       return assign && targetType === 'object' && valueType === 'object'
       ? Object.assign({}, target, value)
       : value;
   }
-  let nextPath = paths.shift();
+  const nextPath = paths.shift();
   target = clone(target);
   if (target === undefined && options.autoCreated) {
     target = {};
+  }
+  if (!nextPath) {
+    return target;
   }
   if (length === 1 && target[nextPath] === value) {
     return target;
@@ -48,14 +51,16 @@ export const set = function(target, paths=[], value, options = {}) {
  * @param {Object or Array} target
  * @param {String or Array} pathes, like: "a.b.c" , ['a', 'b', 'c']
  */
-export const get = function(target, paths=[]) {
-  if (!target) return;
-    paths = Array.isArray(paths) ? paths : ('' + paths).split('.');
-    paths.some((path) => {
+export const get = (target: any, paths: Array<string | number> | string = []) => {
+  if (!target) {
+    return;
+  };
+  paths = Array.isArray(paths) ? paths : ('' + paths).split('.');
+  paths.some((path) => {
     target = target[path];
     if (target === null || target === undefined) {
       return true;
-	} else {
+  } else {
       return false;
     }
   });
@@ -71,23 +76,12 @@ export const get = function(target, paths=[]) {
  * @param {Parameters} args, the same as the splice's parameters
  * @return {Object} the new Object with change
  */
-export const splice = function(data, index, howMany = 1, paths=[],  ...args) {
+export const splice = (data: any, index: number, howMany: number = 1, paths: Array<string | number> | string = [],  ...args: any[]) => {
   let list = get(data, paths);
   if (!Array.isArray(list)) {
     return list;
   }
   list = list.slice();
   list.splice(index, howMany, ...args);
-  return set(data, paths, list, true);
-};
-/**
- * @author: langwenqi
- * @describe: set state async(need to insert in React Component)
- * @param {state} React Component state
- * @return {Promise} the result
- */
-export const setStateAsync = function(state) {
-    return new Promise((resolve) => {
-        this.setState(state, resolve);
-    });
+  return set(data, paths, list, {});
 };
